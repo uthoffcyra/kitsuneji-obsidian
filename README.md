@@ -1,2 +1,3 @@
 # kitsuneji-obsidian
-My Personal Obsidian Setup
+
+Currently a work in progress.
