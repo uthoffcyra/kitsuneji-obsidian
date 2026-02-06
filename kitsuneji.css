@@ -1,0 +1,308 @@
+
+/* =====================================================================
+
+                         K I T S U N E J I
+                          by Cyra Uthoff
+
+===================================================================== */
+
+/*
+
+MIT License
+
+Copyright (c) 2026 Cyra Uthoff
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+*/
+
+body {
+    --h1-size: 1.85em;
+    --h1-font: "Georgia", serif;
+    --h2-size: 1.45em;
+    --h3-size: 1.2em;
+
+    --heading-spacing: 1.4em;
+    --p-spacing: 1em;
+
+    --hr-thickness: 1.2px;
+    --hr-color: var(--ui1);
+
+    --kitsuneji-saved-accent: #c4ea3e;
+    --secondary-accent: #f3a96d;
+    --beige-accent: rgb(242, 190, 57);
+}
+
+/* inline title - add border bottom */
+body:not(.kitsuneji-cancel-inline-title-style) .inline-title:not([data-level]) {
+    padding-bottom: 0.5rem;
+    border-bottom: var(--hr-thickness) solid; 
+    border-color: var(--hr-color);
+    margin-block-end: calc(var(--p-spacing) * 0.7);
+}
+
+/* fix margins for paragraphs following inline title */
+body.kitsuneji-dev-show-p-space .el-p:has( + .el-hr) {
+    color: red;
+    font-weight: bold;
+}
+body:not(.kitsuneji-cancel-p-space) .el-p + .el-hr hr {
+    margin-block-start: calc(var(--p-spacing) * 0.5 + var(--p-spacing));
+}
+
+/* pointer cursor for callout expansion */
+.callout.is-collapsible .callout-title {
+    cursor: var(--cursor-link);
+}
+
+/* new callout type "images" or "attachments" */
+.callout[data-callout="images"], .callout[data-callout="attachments"] {
+    --callout-color: var(--callout-quote);
+    --callout-icon: paperclip;
+
+    & .callout-content p {
+        display: flex;
+        gap: 0.5rem;
+    }
+}
+
+/* ==============================
+
+          CSS CLASSES
+
+============================== */
+
+/* ========= cssclasses: hide-title ========= */
+.hide-title {
+    .inline-title {
+        display: none;
+    }
+}
+
+/* ========= cssclasses: justify ========= */
+.justify > * {
+	text-align: justify;
+}
+
+/* ========= cssclasses: bold-colored ========= */
+.bold-colored strong {
+    color: var(--text-accent);
+}
+.bold-colored blockquote strong {
+    opacity: 0.7;
+}
+
+/* ========= cssclasses: italic-colored ========= */
+.italic-colored em {
+    color: var(--secondary-accent);
+}
+
+/* ========= cssclasses: beige-accent ========= */
+.beige-accent {
+    --text-accent: color-mix(in srgb, var(--beige-accent), var(--text-normal));
+}
+
+/* ========= cssclasses: full-width ========= */
+body:not(.is-mobile) .full-width .markdown-preview-sizer {
+    --content-margin: 4em;
+    --line-width: auto;
+}
+
+/* ========= cssclasses: cover-float ========= */
+.cover-float img {
+    width: 16em;
+    float: right;
+
+    padding: 8px;
+    border: solid var(--hr-thickness) var(--hr-color);
+    border-radius: 12px;
+}
+
+/* ========= cssclasses: images-gallery-sized ========= */
+.images-gallery-sized p:has(span.image-embed) {
+    text-align: center;
+    background-color: #00000034;
+    padding: 14px 0 8px 0;
+    border-radius: var(--image-radius);
+}
+.images-gallery-sized span.image-embed img {
+    height: 24em;
+    border-radius: 0;
+}
+
+/* @settings
+
+name: kitsuneji
+id: uthoffcyra-kitsuneji
+settings:
+    -
+        id: basic-variable-overrides
+        title: Font Sizes & Spacing
+        type: heading
+        level: 2
+        collapsed: true
+    - 
+        id: h1-size
+        title: 'First Header, Size'
+        type: variable-number
+        default: 1.85
+        format: em
+    - 
+        id: h1-font
+        title: 'First Header, Font Override'
+        type: variable-text
+        default: '"Georgia", serif'
+    - 
+        id: h2-size
+        title: 'Second Header, Size'
+        type: variable-number
+        default: 1.45
+        format: em
+    - 
+        id: h3-size
+        title: 'Third Header, Size'
+        type: variable-number
+        default: 1.2
+        format: em
+    - 
+        id: heading-spacing
+        title: 'Header Spacing'
+        type: variable-number
+        default: 1.4
+        format: em
+    - 
+        id: p-spacing
+        title: 'Paragraph Spacing'
+        type: variable-number
+        default: 1
+        format: em
+    - 
+        id: hr-thickness
+        title: 'Horizontal Spacer, Thickness'
+        type: variable-number
+        default: 1.2
+        format: px
+
+
+
+    -
+        id: colors
+        title: Colors
+        type: heading
+        level: 2
+        collapsed: true
+    - 
+        id: secondary-accent
+        title: Secondary Accent Color
+        description: Used for the CSS class "italic-colored".
+        type: variable-color
+        opacity: false
+        format: hex
+        default: '#f3a96d'
+    - 
+        id: beige-accent
+        title: Beige Override Accent Color
+        description: Used for the CSS class "beige-accent". This color is combined with text color for compatability between both light and dark modes.
+        type: variable-color
+        opacity: false
+        format: rgb
+        default: 'rgb(242, 190, 57)'
+
+
+
+    -
+        id: fixes-and-tweaks
+        title: Fixes & Tweaks
+        type: heading
+        level: 2
+        collapsed: true
+    - 
+        id: kitsuneji-cancel-inline-title-style
+        title: Disable Inline Title Style
+        description: Disables the custom styling of the built-in title showing the note's file name.
+        type: class-toggle
+    - 
+        id: kitsuneji-cancel-p-space
+        title: Disable Spacing Fix
+        description: Disables a spacing fix between paragraphs and horizontal spacers.
+        type: class-toggle
+    - 
+        id: kitsuneji-dev-show-p-space
+        title: "[DEV] Highlight Spacing Fix"
+        description: Highlights paragraphs affected by the spacing fix in red.
+        type: class-toggle
+
+
+
+    -
+        id: css-classes-documentation
+        title: CSS Classes
+        type: heading
+        level: 2
+        collapsed: true
+    - 
+        id: css-classes-documentation-hide-title
+        title: '"hide-title"'
+        description: "Removes the built-in title element that matches the note's filename."
+        type: info-text
+        markdown: true
+    - 
+        id: css-classes-documentation-justify
+        title: '"justify"'
+        description: "Sets the text-align property of the note to 'justify'."
+        type: info-text
+        markdown: true
+    - 
+        id: css-classes-documentation-bold-colored
+        title: '"bold-colored"'
+        description: "Colors strong or bold elements to be the vault's accent color."
+        type: info-text
+        markdown: true
+    - 
+        id: css-classes-documentation-italic-colored
+        title: '"italic-colored"'
+        description: "Colors emphasized or italic elements to be the vault's *secondary* accent color. See 'Basic Variables' for more information."
+        type: info-text
+        markdown: true
+    - 
+        id: css-classes-documentation-beige-accent
+        title: '"beige-accent"'
+        description: "Sets the accent color of the note to a beige color. See 'Basic Variables' for more information."
+        type: info-text
+        markdown: true
+    - 
+        id: css-classes-documentation-full-width
+        title: '"full-width"'
+        description: "Lets the note take up the full width of the window."
+        type: info-text
+        markdown: true
+    - 
+        id: css-classes-documentation-cover-float
+        title: '"cover-float"'
+        description: "If the first element of a note is an image, has it float to the right of the note content."
+        type: info-text
+        markdown: true
+    - 
+        id: css-classes-documentation-images-gallery-sized
+        title: '"images-gallery-sized"'
+        description: "Sizes images to have a max-height and a faded background."
+        type: info-text
+        markdown: true
+
+*/
