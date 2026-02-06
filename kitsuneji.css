@@ -135,13 +135,13 @@ body:not(.is-mobile) .full-width .markdown-preview-sizer {
 }
 
 /* ========= cssclasses: images-gallery-sized ========= */
-.images-gallery-sized p:has(span.image-embed) {
+.images-gallery-sized p:has(img) {
     text-align: center;
     background-color: #00000034;
     padding: 14px 0 8px 0;
     border-radius: var(--image-radius);
 }
-.images-gallery-sized span.image-embed img {
+.images-gallery-sized img {
     height: 24em;
     border-radius: 0;
 }
