@@ -60,7 +60,7 @@ You can find my full configuration file [here](https://github.com/uthoffcyra/kit
 
 ## Other 
 
-- [Furigana](https://github.com/uonr/obsidian-furigana).
+- [Furigana](https://github.com/uonr/obsidian-furigana)
 - [Obsifetch](https://github.com/tabibyte/obsifetch)
 - [Smart Typography](https://github.com/mgmeyers/obsidian-smart-typography)
 - [Style Settings](https://github.com/mgmeyers/obsidian-style-settings)
